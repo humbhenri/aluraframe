@@ -3,12 +3,12 @@ class View {
         this._elemento = elemento;
     }
 
-    _template() {
+    template() {
         throw new Error('Deve ser implementado');
     }
 
     update(model) {
-        this._elemento.innerHTML = this._template(model);
+        this._elemento.innerHTML = this.template(model);
     }
 
 }
