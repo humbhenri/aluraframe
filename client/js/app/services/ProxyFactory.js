@@ -4,9 +4,9 @@ class ProxyFactory {
             get(target, prop, receiver) {
                 if (props.includes(prop) && typeof (target[prop]) == 'function') {
                     return function () {
-                        console.log(`interceptando ${prop}`);
-                        Reflect.apply(target[prop], target, arguments);
-                        return acao(target);
+                        let result = Reflect.apply(target[prop], target, arguments);
+                        acao(target);
+                        return result;
                     }
                 }
 
@@ -14,11 +14,11 @@ class ProxyFactory {
             },
 
             set(target, prop, value, receiver) {
-                console.log(`interceptando ${prop}`);
+                let result = Reflect.set(target, prop, value, receiver); 
                 if (props.includes(prop)) {
                     acao(target);
                 }
-                return Reflect.set(target, prop, value, receiver);
+                return result;
             }
         });
     }
