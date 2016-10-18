@@ -47,6 +47,7 @@ class NegociacaoController {
                     
                 } else {
                     console.log(`Erro: ${xhr.responseText}`);
+                    this._mensagem.texto = 'Não foi possível importar as negociações';
                 }
             }
         };
